@@ -9,31 +9,30 @@ class ListNode:
         while(tracer.next != None):
             print(tracer.val)
             tracer = tracer.next
-        print(print(tracer.val))
-
+        print(tracer.val)
 
 class Solution:
     def mergeTwoLists(self, l1, l2):
         tracer = output = ListNode(0)
-        while(l1 and l2):
-            print("l1:",l1.val,"l2:",l2.val)
-            if(l1.val < l2.val):
+        while(l1 or l2):
+            if(l1 == None):
+                tracer.next = l2
+                l2 = l2.next
+                tracer = tracer.next
+
+            elif (l2 == None):
                 tracer.next = l1
                 l1 = l1.next
+                tracer = tracer.next
+
+            elif(l1.val < l2.val):
+                tracer.next = l1
+                l1 = l1.next
+                tracer = tracer.next
             else:
                 tracer.next = l2
                 l2 = l2.next
-            tracer = tracer.next
+                tracer = tracer.next
         return output.next
 
 
-l1 = ListNode(0)
-l1.next = ListNode(1)
-l1.next.next = ListNode(4)
-l2 = ListNode(2)
-l2.next = ListNode(3)
-l2.next.next = ListNode(5)
-
-a = Solution()
-
-print(a.mergeTwoLists(l1, l2).printAllNode())
